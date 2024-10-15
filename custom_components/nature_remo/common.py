@@ -66,7 +66,7 @@ class NatureUpdateCoordinator(DataUpdateCoordinator[dict[str, dict]]):
         self.path = path
         self.rate_limit = rate_limit
         self.session = session
-        self.update_interval = timedelta(seconds=15)
+        self.update_interval = timedelta(seconds=30)
 
     async def _async_update_data(self):
         access_token: str = self.entry.data[CONF_ACCESS_TOKEN]
