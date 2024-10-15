@@ -1,0 +1,5 @@
+{
+    "name": "Home Assistant integration for Nature Remo",
+    "homeassistant": "2024.10.1",
+    "render_readme": true
+}
