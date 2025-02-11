@@ -66,7 +66,7 @@ class NatureUpdateCoordinator(DataUpdateCoordinator[dict[str, dict]]):
         self.path = path
         self.rate_limit = rate_limit
         self.session = session
-        self.update_interval = timedelta(seconds=30)
+        self.update_interval = timedelta(minutes=1)
 
     async def _async_update_data(self):
         access_token: str = self.entry.data[CONF_ACCESS_TOKEN]
@@ -83,7 +83,7 @@ class NatureUpdateCoordinator(DataUpdateCoordinator[dict[str, dict]]):
                 {"remaining": remaining, "reset": reset}
             )
             if response.status == 429:
-                self._schedule_refresh(reset + timedelta(seconds=1))
+                self._schedule_refresh()
         if response.status != 200:
             raise UpdateFailed(f"status code: {response.status}")
         data = await response.json()
